@@ -26,7 +26,7 @@ namespace OssetianCrossword
             }
 
             // считываем файл со словами кроссворда
-            StreamReader SR = new StreamReader("Animals.txt");
+            StreamReader SR = new StreamReader("Crosswords/Animals.txt");
 
             // создаем объект класса Crossword
             Crossword crossword = new Crossword();
