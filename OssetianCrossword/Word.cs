@@ -13,7 +13,7 @@ namespace OssetianCrossword
         private int y;
         private int count;
         private string direction;
-        private string ossetianWord;
+        private string[] ossetianWord;
         private string russianWord;
         public Word(int number, int x, int y, int count, string direction, string ossetianWord, string russianWord)
         {
@@ -22,12 +22,29 @@ namespace OssetianCrossword
             this.y = y;
             this.count = count;
             this.direction = direction;
-            this.ossetianWord = ossetianWord;
             this.russianWord = russianWord;
         }
+        // возвращает наше слово в виде строки с характеристиками (бета)
         public string MakeString()
         {
             return $"{number} {x} {y} {count} {direction} {ossetianWord} {russianWord}";
+        }
+        // get методы
+        public int GetNumber()
+        {
+            return number;
+        }
+        public int[] GetXY()
+        {
+            return new int[] { x, y };
+        }
+        public int GetLen()
+        {
+            return count;
+        }
+        public string GetDirection()
+        {
+            return direction;
         }
     }
 }

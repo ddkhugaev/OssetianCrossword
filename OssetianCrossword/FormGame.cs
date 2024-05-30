@@ -17,7 +17,7 @@ namespace OssetianCrossword
         {
             InitializeComponent();
 
-            // добавляем 30 строк в нашей таблице для кроссворда
+            // добавляем 18 строк в нашей таблице для кроссворда
             for (int i = 0; i < 18; i++)
             {
                 crosswordField.Rows.Add();
@@ -45,6 +45,15 @@ namespace OssetianCrossword
                 string russianWord = args[6];
                 Word word = new Word(number, x, y, count, direction, ossetianWord, russianWord);
                 crossword.AddWord(word);
+            }
+
+            // записываем номер в начальную клеточку слова (бета)
+            for (int i = 0; i < crossword.GetLen(); i++)
+            {
+                int[] xy = crossword[i].GetXY();
+                int x = xy[0];
+                int y = xy[1];
+                crosswordField[x, y].Value = crossword[i].GetNumber();
             }
         }
     }
