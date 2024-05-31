@@ -13,6 +13,15 @@ namespace OssetianCrossword
 {
     public partial class FormGame : Form
     {
+        // обработчик нажатий на кнопки экранной клавиатуры
+        private void AlphabetButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            Button button = (Button)sender;
+            crosswordField.CurrentCell.Value = button.Text;
+            int y = crosswordField.CurrentCell.RowIndex;
+            int x = crosswordField.CurrentCell.ColumnIndex + 1;
+            crosswordField.CurrentCell = crosswordField[x, y];
+        }
         public FormGame()
         {
             InitializeComponent();
@@ -71,7 +80,38 @@ namespace OssetianCrossword
                 }
             }
 
+            // добавление экранной клавиатуры
+            string[] alphabet = "А Ӕ Б В Г Гъ Д Дз Дж Е Ё Ж З И Й К Къ Л М Н О П Пъ Р С Т Тъ У Ф Х Хъ Ц Цъ Ч Чъ Ш Щ ъ ы ь Э Ю Я".Split();
+            int ind = 0;
+            int top = 380;
+            int left = 620;
 
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 11; j++)
+                {
+                    if (i == 3 && j == 10)
+                    {
+                        break;
+                    }
+                    Button button = new Button();
+                    button.Left = left;
+                    button.Top = top;
+                    button.Height = 40;
+                    button.Width = 40;
+                    button.Name = "btn" + i;
+                    button.Text = alphabet[ind];
+                    ind++;
+
+                    button.Click += AlphabetButtonOnClick;
+
+                    this.Controls.Add(button);
+                    left += button.Width + 2;
+
+                }
+                left = 620;
+                top += 42;
+            }
         }
     }
 }
