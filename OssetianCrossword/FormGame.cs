@@ -47,14 +47,31 @@ namespace OssetianCrossword
                 crossword.AddWord(word);
             }
 
-            // записываем номер в начальную клеточку слова (бета)
+            // записываем номер в начальную ячейку слова, закрашиваем ячейки слова белым цветом (бета)
             for (int i = 0; i < crossword.GetLen(); i++)
             {
                 int[] xy = crossword[i].GetXY();
                 int x = xy[0];
                 int y = xy[1];
+                int wordLen = crossword[i].GetLen();
+                string wordDirect = crossword[i].GetDirection();
                 crosswordField[x, y].Value = crossword[i].GetNumber();
+
+                for (int j = 0; j < wordLen; j++)
+                {
+                    crosswordField[x, y].Style.BackColor = Color.White;
+                    if (wordDirect == "right")
+                    {
+                        x++;
+                    }
+                    else
+                    {
+                        y++;
+                    }
+                }
             }
+
+
         }
     }
 }

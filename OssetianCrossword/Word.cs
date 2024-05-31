@@ -22,6 +22,7 @@ namespace OssetianCrossword
             this.y = y;
             this.count = count;
             this.direction = direction;
+            this.ossetianWord = ossetianWord.Split();
             this.russianWord = russianWord;
         }
         // возвращает наше слово в виде строки с характеристиками (бета)
