@@ -17,11 +17,69 @@ namespace OssetianCrossword
         private void AlphabetButtonOnClick(object sender, EventArgs eventArgs)
         {
             Button button = (Button)sender;
-            crosswordField.CurrentCell.Value = button.Text;
-            int y = crosswordField.CurrentCell.RowIndex;
-            int x = crosswordField.CurrentCell.ColumnIndex + 1;
-            crosswordField.CurrentCell = crosswordField[x, y];
+            if (crosswordField.CurrentCell.Style.BackColor == Color.White)
+            {
+                crosswordField.CurrentCell.Value = button.Text;
+                CheckCorrectWord(crosswordField);
+                int y = crosswordField.CurrentCell.RowIndex;
+                int x = crosswordField.CurrentCell.ColumnIndex + 1;
+                crosswordField.CurrentCell = crosswordField[x, y];
+            }
         }
+        // проверка правильности всех введенных слов в кроссворде
+        static void CheckCorrectWord(DataGridView crosswordField)
+        {
+            for (int i = 0; i < crossword.GetLen(); i++)
+            {
+                Word word = crossword[i];
+                int[] xy = word.GetXY();
+                int x = xy[0];
+                int y = xy[1];
+                string direct = word.GetDirection();
+                string[] ossetianWord = word.GetOssetianWord();
+                int count = word.GetLen();
+                for (int j = 0; j < count; j++)
+                {
+                    if (Convert.ToString(crosswordField[x, y].Value).ToLower() == Convert.ToString(ossetianWord[j]))
+                    {
+                        if (direct == "right")
+                        {
+                            x++;
+                        }
+                        else
+                        {
+                            y++;
+                        }
+                        if (j == count - 1)
+                        {
+                            FillGreenCell(xy[0], xy[1], count, direct, crosswordField);
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        // закрашивание правильных слов в зеленый
+        static void FillGreenCell(int x, int y, int count, string direct, DataGridView crosswordField)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                crosswordField[x, y].Style.BackColor = Color.Lime;
+                if (direct == "right")
+                {
+                    x++;
+                }
+                else
+                {
+                    y++;
+                }
+            }
+        }
+        // создаем объект класса Crossword
+        static Crossword crossword = new Crossword();
         public FormGame()
         {
             InitializeComponent();
@@ -37,8 +95,7 @@ namespace OssetianCrossword
             // считываем файл со словами кроссворда
             StreamReader SR = new StreamReader("Crosswords/Animals.txt");
 
-            // создаем объект класса Crossword
-            Crossword crossword = new Crossword();
+            
 
             // считываем слова из файла со словами, создаем объекты класса Word, добавляем их в объект класса Crossword
             string s = "";
@@ -90,17 +147,20 @@ namespace OssetianCrossword
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    if (i == 3 && j == 10)
-                    {
-                        break;
-                    }
                     Button button = new Button();
                     button.Left = left;
                     button.Top = top;
                     button.Height = 40;
                     button.Width = 40;
                     button.Name = "btn" + i;
-                    button.Text = alphabet[ind];
+                    if (i == 3 && j == 10)
+                    {
+                        button.Text = "<-";
+                    }
+                    else
+                    {
+                        button.Text = alphabet[ind];
+                    }
                     ind++;
 
                     button.Click += AlphabetButtonOnClick;

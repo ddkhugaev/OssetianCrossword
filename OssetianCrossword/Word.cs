@@ -22,7 +22,7 @@ namespace OssetianCrossword
             this.y = y;
             this.count = count;
             this.direction = direction;
-            this.ossetianWord = ossetianWord.Split();
+            this.ossetianWord = ossetianWord.Replace("ае", "ӕ").Split();
             this.russianWord = russianWord;
         }
         // возвращает наше слово в виде строки с характеристиками (бета)
@@ -46,6 +46,10 @@ namespace OssetianCrossword
         public string GetDirection()
         {
             return direction;
+        }
+        public string[] GetOssetianWord()
+        {
+            return ossetianWord;
         }
     }
 }
