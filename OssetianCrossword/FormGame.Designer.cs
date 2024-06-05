@@ -109,7 +109,6 @@ namespace OssetianCrossword
             this.crosswordField.RowTemplate.Height = 24;
             this.crosswordField.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.crosswordField.ShowCellErrors = false;
-            this.crosswordField.ShowCellToolTips = false;
             this.crosswordField.ShowEditingIcon = false;
             this.crosswordField.ShowRowErrors = false;
             this.crosswordField.Size = new System.Drawing.Size(804, 668);

@@ -23,6 +23,11 @@ namespace OssetianCrossword
                 CheckCorrectWord(crosswordField);
                 int y = crosswordField.CurrentCell.RowIndex;
                 int x = crosswordField.CurrentCell.ColumnIndex + 1;
+                if (crosswordField[x, y].Style.BackColor != Color.White)
+                {
+                    y = crosswordField.CurrentCell.RowIndex + 1;
+                    x = crosswordField.CurrentCell.ColumnIndex;
+                }
                 crosswordField.CurrentCell = crosswordField[x, y];
             }
         }
@@ -136,6 +141,7 @@ namespace OssetianCrossword
                     }
                 }
             }
+            crosswordField[2, 0].ToolTipText = "1";
 
             // добавление экранной клавиатуры
             string[] alphabet = "А Ӕ Б В Г Гъ Д Дз Дж Е Ё Ж З И Й К Къ Л М Н О П Пъ Р С Т Тъ У Ф Х Хъ Ц Цъ Ч Чъ Ш Щ ъ ы ь Э Ю Я".Split();
