@@ -29,6 +29,7 @@ namespace OssetianCrossword
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
             this.labelHead = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace OssetianCrossword
             this.ClientSize = new System.Drawing.Size(634, 316);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.labelHead);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Кроссворд на осетинском";

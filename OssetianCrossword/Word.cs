@@ -51,5 +51,9 @@ namespace OssetianCrossword
         {
             return ossetianWord;
         }
+        public string GetRussianWord()
+        {
+            return russianWord;
+        }
     }
 }
