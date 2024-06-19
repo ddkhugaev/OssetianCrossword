@@ -30,26 +30,15 @@ namespace OssetianCrossword
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
-            this.labelHead = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelHead
-            // 
-            this.labelHead.AutoSize = true;
-            this.labelHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelHead.Location = new System.Drawing.Point(12, 9);
-            this.labelHead.Name = "labelHead";
-            this.labelHead.Size = new System.Drawing.Size(523, 48);
-            this.labelHead.TabIndex = 0;
-            this.labelHead.Text = "Кроссворд на осетинском";
-            // 
             // buttonStart
             // 
-            this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStart.Location = new System.Drawing.Point(20, 60);
+            this.buttonStart.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonStart.Location = new System.Drawing.Point(369, 259);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(186, 54);
+            this.buttonStart.Size = new System.Drawing.Size(132, 56);
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Начать";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -59,21 +48,20 @@ namespace OssetianCrossword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 316);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(882, 453);
             this.Controls.Add(this.buttonStart);
-            this.Controls.Add(this.labelHead);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Кроссворд на осетинском";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelHead;
         private System.Windows.Forms.Button buttonStart;
     }
 }
