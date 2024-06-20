@@ -15,13 +15,22 @@ namespace OssetianCrossword
         public FormMainMenu()
         {
             InitializeComponent();
+            comboBoxLevels.Items.Add("Животные");
+            comboBoxLevels.Items.Add("Еда");
+            comboBoxLevels.SelectedItem = comboBoxLevels.Items[0];
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
             // при нажатии на кнопку Начать, создается и открывается новое окно с игрой
-            FormGame fg = new FormGame();
-            fg.ShowDialog();
+            string level = comboBoxLevels.SelectedItem.ToString();
+            string path = "";
+            if (level == "Животные")
+            {
+                path = "Crosswords/Animals.txt";
+            }
+            FormGame fg = new FormGame(path);
+            fg.Show();
         }
     }
 }

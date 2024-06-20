@@ -28,6 +28,7 @@ namespace OssetianCrossword
                 ChangeCurrentCell(crosswordField);
             }
         }
+
         // авто-смена выбранной ячейки
         static void ChangeCurrentCell(DataGridView crosswordField)
         {
@@ -62,6 +63,7 @@ namespace OssetianCrossword
             }
             crosswordField.CurrentCell = crosswordField[x, y];
         }
+
         // проверка правильности всех введенных слов в кроссворде
         static void CheckCorrectWord(DataGridView crosswordField, DataGridView hintField)
         {
@@ -100,11 +102,13 @@ namespace OssetianCrossword
                 }
             }
         }
+
         // закрашивание подсказок, которые уже не нужны
         static void FillGreenHint(int number, DataGridView hintField)
         {
             hintField[1, number - 1].Style.BackColor = Color.Lime;
         }
+
         // закрашивание правильных слов в зеленый
         static void FillGreenCell(int x, int y, int count, string direct, DataGridView crosswordField)
         {
@@ -121,11 +125,13 @@ namespace OssetianCrossword
                 }
             }
         }
+
         // создаем объект класса Crossword
         static Crossword crossword = new Crossword();
+
         // создаем переменную, хранящую последнее направление перемещения курсора
         static string lastDirect = "right";
-        public FormGame()
+        public FormGame(string path)
         {
             InitializeComponent();
 
@@ -138,7 +144,9 @@ namespace OssetianCrossword
             }
 
             // считываем файл со словами кроссворда
-            StreamReader SR = new StreamReader("Crosswords/Animals.txt");
+            StreamReader SR = new StreamReader(path);
+
+            string crosswordName = SR.ReadLine();
 
             // считываем слова из файла со словами, создаем объекты класса Word, добавляем их в объект класса Crossword
             string s = "";
@@ -208,6 +216,7 @@ namespace OssetianCrossword
                     if (i == 3 && j == 10)
                     {
                         button.Text = "<-";
+                        button.Visible = false;
                     }
                     else
                     {
@@ -224,6 +233,11 @@ namespace OssetianCrossword
                 left = 620;
                 top += 42;
             }
+        }
+
+        private void FormGame_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            hintField.Rows.Clear();
         }
     }
 }

@@ -31,6 +31,7 @@ namespace OssetianCrossword
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
             this.buttonStart = new System.Windows.Forms.Button();
+            this.comboBoxLevels = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // buttonStart
@@ -44,6 +45,16 @@ namespace OssetianCrossword
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
+            // comboBoxLevels
+            // 
+            this.comboBoxLevels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLevels.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxLevels.Location = new System.Drawing.Point(369, 321);
+            this.comboBoxLevels.MaxDropDownItems = 3;
+            this.comboBoxLevels.Name = "comboBoxLevels";
+            this.comboBoxLevels.Size = new System.Drawing.Size(132, 32);
+            this.comboBoxLevels.TabIndex = 2;
+            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -51,6 +62,7 @@ namespace OssetianCrossword
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(882, 453);
+            this.Controls.Add(this.comboBoxLevels);
             this.Controls.Add(this.buttonStart);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -63,6 +75,7 @@ namespace OssetianCrossword
 
         #endregion
         private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.ComboBox comboBoxLevels;
     }
 }
 
