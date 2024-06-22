@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,20 +16,35 @@ namespace OssetianCrossword
         public FormMainMenu()
         {
             InitializeComponent();
-            comboBoxLevels.Items.Add("Животные");
-            comboBoxLevels.Items.Add("Еда");
+
+            // добавляем в комбобокс названия всех кроссвордов
+            string[] allCrosswords = Directory.GetFiles("Crosswords");
+            for (int i = 0; i < allCrosswords.Length; i++)
+            {
+                StreamReader SR = new StreamReader(allCrosswords[i]);
+                comboBoxLevels.Items.Add(SR.ReadLine());
+                SR.Close();
+            }
             comboBoxLevels.SelectedItem = comboBoxLevels.Items[0];
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
             // при нажатии на кнопку Начать, создается и открывается новое окно с игрой
-            string level = comboBoxLevels.SelectedItem.ToString();
             string path = "";
-            if (level == "Животные")
+
+            string[] allCrosswords = Directory.GetFiles("Crosswords");
+            for (int i = 0; i < allCrosswords.Length; i++)
             {
-                path = "Crosswords/Animals.txt";
+                StreamReader SR = new StreamReader(allCrosswords[i]);
+                string crosswordName = SR.ReadLine();
+                SR.Close();
+                if (crosswordName == comboBoxLevels.SelectedItem.ToString())
+                {
+                    path = allCrosswords[i];
+                }
             }
+
             FormGame fg = new FormGame(path);
             fg.Show();
         }

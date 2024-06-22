@@ -382,7 +382,6 @@ namespace OssetianCrossword
             this.Name = "FormGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Кроссворд на осетинском";
-            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FormGame_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.crosswordField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hintField)).EndInit();
             this.ResumeLayout(false);

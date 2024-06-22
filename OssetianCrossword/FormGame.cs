@@ -67,6 +67,7 @@ namespace OssetianCrossword
         // проверка правильности всех введенных слов в кроссворде
         static void CheckCorrectWord(DataGridView crosswordField, DataGridView hintField)
         {
+            bool oneWordIsWrong = false;
             for (int i = 0; i < crossword.GetLen(); i++)
             {
                 Word word = crossword[i];
@@ -97,10 +98,21 @@ namespace OssetianCrossword
                     }
                     else
                     {
+                        oneWordIsWrong = true;
                         break;
                     }
                 }
             }
+            if (oneWordIsWrong == false)
+            {
+                EndGame();
+            }
+        }
+
+        // завершение игры
+        static void EndGame()
+        {
+            MessageBox.Show("Вы завершили кроссворд!");
         }
 
         // закрашивание подсказок, которые уже не нужны
@@ -135,6 +147,8 @@ namespace OssetianCrossword
         {
             InitializeComponent();
 
+            crossword = new Crossword();
+
             // добавляем 18 строк в нашей таблице для кроссворда
             for (int i = 0; i < 18; i++)
             {
@@ -163,6 +177,7 @@ namespace OssetianCrossword
                 Word word = new Word(number, x, y, count, direction, ossetianWord, russianWord);
                 crossword.AddWord(word);
             }
+            SR.Close();
 
             // записываем номер в начальную ячейку слова, закрашиваем ячейки слова белым цветом (бета)
             for (int i = 0; i < crossword.GetLen(); i++)
@@ -172,8 +187,45 @@ namespace OssetianCrossword
                 int y = xy[1];
                 int wordLen = crossword[i].GetLen();
                 string wordDirect = crossword[i].GetDirection();
-                crosswordField[x, y].Value = crossword[i].GetNumber();
-                crosswordField[x, y].ToolTipText = Convert.ToString(crossword[i].GetNumber());
+
+                if (i == 0)
+                {
+                    crosswordField.CurrentCell = crosswordField[x, y];
+                }
+
+                if (crosswordField[x, y].Value == null)
+                {
+                    crosswordField[x, y].Value = crossword[i].GetNumber();
+                }
+                else
+                {
+                    crosswordField[x, y].Value += ", " + crossword[i].GetNumber().ToString();
+                }
+                if (wordDirect == "right")
+                {
+                    crosswordField[x, y].Value += "→";
+                }
+                else
+                {
+                    crosswordField[x, y].Value += "↓";
+                }
+
+                if (crosswordField[x, y].ToolTipText == "")
+                {
+                    crosswordField[x, y].ToolTipText = Convert.ToString(crossword[i].GetNumber());
+                }
+                else
+                {
+                    crosswordField[x, y].ToolTipText += ", " + Convert.ToString(crossword[i].GetNumber());
+                }
+                if (wordDirect == "right")
+                {
+                    crosswordField[x, y].ToolTipText += "→";
+                }
+                else
+                {
+                    crosswordField[x, y].ToolTipText += "↓";
+                }
 
                 for (int j = 0; j < wordLen; j++)
                 {
@@ -194,11 +246,19 @@ namespace OssetianCrossword
             {
                 hintField.Rows.Add();
                 hintField[0, i].Value = Convert.ToString(i + 1);
+                if (crossword[i].GetDirection() == "right")
+                {
+                    hintField[0, i].Value += "→";
+                }
+                else
+                {
+                    hintField[0, i].Value += "↓";
+                }
                 hintField[1, i].Value = crossword[i].GetRussianWord();
             }
 
             // добавление экранной клавиатуры
-            string[] alphabet = "А Ӕ Б В Г Гъ Д Дз Дж Е Ё Ж З И Й К Къ Л М Н О П Пъ Р С Т Тъ У Ф Х Хъ Ц Цъ Ч Чъ Ш Щ ъ ы ь Э Ю Я".Split();
+            string[] alphabet = "А Ӕ Б В Г Гъ Д Дз Дж Е Ё Ж З И Й К Къ Л М Н О П Пъ Р С Т Тъ У Ф Х Хъ Ц Цъ Ч Чъ Ш Щ Ъ Ы Ь Э Ю Я".Split();
             int ind = 0;
             int top = 380;
             int left = 620;
@@ -233,11 +293,6 @@ namespace OssetianCrossword
                 left = 620;
                 top += 42;
             }
-        }
-
-        private void FormGame_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            hintField.Rows.Clear();
         }
     }
 }

@@ -36,20 +36,23 @@ namespace OssetianCrossword
             // 
             // buttonStart
             // 
+            this.buttonStart.BackColor = System.Drawing.Color.White;
+            this.buttonStart.FlatAppearance.BorderSize = 0;
+            this.buttonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStart.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStart.Location = new System.Drawing.Point(369, 259);
+            this.buttonStart.Location = new System.Drawing.Point(365, 239);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(132, 56);
+            this.buttonStart.Size = new System.Drawing.Size(131, 74);
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Начать";
-            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.UseVisualStyleBackColor = false;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // comboBoxLevels
             // 
             this.comboBoxLevels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLevels.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxLevels.Location = new System.Drawing.Point(369, 321);
+            this.comboBoxLevels.Location = new System.Drawing.Point(591, 281);
             this.comboBoxLevels.MaxDropDownItems = 3;
             this.comboBoxLevels.Name = "comboBoxLevels";
             this.comboBoxLevels.Size = new System.Drawing.Size(132, 32);
