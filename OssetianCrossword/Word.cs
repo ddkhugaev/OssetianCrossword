@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OssetianCrossword
+﻿namespace OssetianCrossword
 {
     class Word
     {
@@ -25,7 +19,7 @@ namespace OssetianCrossword
             this.ossetianWord = ossetianWord.Replace("ае", "ӕ").Split();
             this.russianWord = russianWord;
         }
-        // возвращает наше слово в виде строки с характеристиками (бета)
+        // возвращает наше слово в виде строки с характеристиками (отладка)
         public string MakeString()
         {
             return $"{number} {x} {y} {count} {direction} {ossetianWord} {russianWord}";
