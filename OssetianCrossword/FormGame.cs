@@ -20,8 +20,8 @@ namespace OssetianCrossword
             if (crosswordField.CurrentCell.Style.BackColor == Color.White)
             {
                 crosswordField.CurrentCell.Value = button.Text;
-                CheckCorrectWord(crosswordField, hintField);
                 ChangeCurrentCell(crosswordField);
+                CheckCorrectWord(crosswordField, hintField);
             }
             else if (crosswordField.CurrentCell.Style.BackColor == Color.Lime)
             {
@@ -112,7 +112,10 @@ namespace OssetianCrossword
         // завершение игры
         static void EndGame()
         {
-            MessageBox.Show("Вы завершили кроссворд!");
+            Form form = Application.OpenForms[1];
+            form.Close();
+            FormEndGame formEndGame = new FormEndGame();
+            formEndGame.ShowDialog();
         }
 
         // закрашивание подсказок, которые уже не нужны
