@@ -291,5 +291,11 @@ namespace OssetianCrossword
                 top += 42;
             }
         }
+
+        // нельзя выбирать клетки в таблице подсказок
+        private void hintField_SelectionChanged(object sender, EventArgs e)
+        {
+            hintField.ClearSelection();
+        }
     }
 }
